@@ -2,6 +2,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 import StackFilter from "./StackFilter"
 
+interface iconProps {
+    name: string;
+    stack: number;
+}
+
 export default function StackWidget() {
 
     const icons = [
@@ -22,8 +27,8 @@ export default function StackWidget() {
     ]
 
     const [skillTypes, setSkillTypes] = useState(0)
-    const [allIcons, setAllIcons] = useState([])
-    const [filteredIcons, setFilteredIcons] = useState([])
+    const [allIcons, setAllIcons] = useState<iconProps[]>([])
+    const [filteredIcons, setFilteredIcons] = useState<iconProps[]>([])
 
     useEffect(() => {
         setAllIcons(icons)

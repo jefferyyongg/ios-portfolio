@@ -1,6 +1,24 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import axios from "axios"
 
+interface TrackItem {
+  track: {
+    name: string;
+    artists: {
+      name: string;
+    }[];
+    album: {
+      name: string;
+      images: {
+        url: string;
+      }[];
+    };
+    external_urls: {
+      spotify: string;
+    };
+  };
+}
+
 export const spotifyRouter = createTRPCRouter({
 
     getRecentlyPlayed: publicProcedure.query(async () => {
@@ -34,12 +52,16 @@ export const spotifyRouter = createTRPCRouter({
         },
       });
 
-      const tracks = data.items.map((item) => {
+      const tracks = data.items.map((item: TrackItem) => {
+        const album = item.track.album;
+        const images = album?.images?.map(image => image.url) || [];
+        const imageUrl = images.length > 0 ? images[0] : '';
+      
         return {
           name: item.track.name,
           artist: item.track.artists.map((a) => a.name).join(", "),
-          album: item.track.album.name,
-          imageUrl: item.track.album.images[0].url,
+          album: album?.name || '',
+          imageUrl: imageUrl,
           url: item.track.external_urls.spotify,
         };
       });
