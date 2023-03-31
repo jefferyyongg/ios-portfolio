@@ -17,13 +17,13 @@ export default function MapsWidget() {
 
     const [map, setMap] = useState<mapboxgl.Map>()
 
-    const setMapStyle = () => {
-      const mapStyle = isDarkMode ? "mapbox://styles/mapbox/light-v10" : "mapbox://styles/mapbox/dark-v10"
-      return mapStyle
-    }
-
     useEffect(() => {
       mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
+      const setMapStyle = () => {
+        const mapStyle = isDarkMode ? "mapbox://styles/mapbox/light-v10" : "mapbox://styles/mapbox/dark-v10"
+        return mapStyle
+      }
 
       const newMap: mapboxgl.Map = new mapboxgl.Map({
         container: 'map', // container ID

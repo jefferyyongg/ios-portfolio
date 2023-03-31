@@ -9,28 +9,28 @@ interface iconProps {
 
 export default function StackWidget() {
 
-    const icons = [
-        {name: "html.png", stack: 1}, 
-        {name: "css.png", stack: 1}, 
-        {name: "js.png", stack: 1}, 
-        {name: "tailwind.png", stack: 1}, 
-        {name: "typescript.png", stack: 1},
-    
-        {name: "python.png", stack: 2}, 
-        {name: "mysql.png", stack: 2},
-        {name: "trpc.png", stack: 2},
-        {name: "mongodb.png", stack: 2}, 
-    
-        {name: "react.png", stack: 3}, 
-        {name: "flask.png", stack: 3}, 
-        {name: "next.png", stack: 3}, 
-    ]
-
     const [skillTypes, setSkillTypes] = useState(0)
     const [allIcons, setAllIcons] = useState<iconProps[]>([])
     const [filteredIcons, setFilteredIcons] = useState<iconProps[]>([])
 
     useEffect(() => {
+        const icons = [
+            {name: "html.png", stack: 1}, 
+            {name: "css.png", stack: 1}, 
+            {name: "js.png", stack: 1}, 
+            {name: "tailwind.png", stack: 1}, 
+            {name: "typescript.png", stack: 1},
+        
+            {name: "python.png", stack: 2}, 
+            {name: "mysql.png", stack: 2},
+            {name: "trpc.png", stack: 2},
+            {name: "mongodb.png", stack: 2}, 
+        
+            {name: "react.png", stack: 3}, 
+            {name: "flask.png", stack: 3}, 
+            {name: "next.png", stack: 3}, 
+        ]
+
         setAllIcons(icons)
         setFilteredIcons(icons)
     }, [])

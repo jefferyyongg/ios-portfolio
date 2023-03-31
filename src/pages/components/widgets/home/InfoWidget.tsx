@@ -39,13 +39,13 @@ export default function InfoWidget() {
                 >   
                     <p className='font-medium text-3xl text-left py-16'>I specialize in web development using the latest technologies, including HTML, Tailwind, React, and Next.js. I also use tRPC for type-safe routing to ensure that my code is both efficient and secure.
                     One of my favorite tools for creating engaging and dynamic websites is Framer Motion, a powerful yet simple motion library for React. With Framer Motion, I can create animations that make my websites come to life and provide a seamless user experience.
-                    If you're looking for a skilled and passionate developer to help you take your business to the next level, I'd love to hear from you. Please feel free to reach out to me via my website portfolio app, where you can see some examples of my work and get in touch with me directly.
+                    If youre looking for a skilled and passionate developer to help you take your business to the next level, Id love to hear from you. Please feel free to reach out to me via my website portfolio app, where you can see some examples of my work and get in touch with me directly.
                     </p>
         </motion.div>
             ) : (
                 <>  
                     <motion.h2 className="font-semibold text-xl text-center">Self-taught full-stack developer from The Netherlands</motion.h2>
-                    <motion.p className="text-center py-2">Hey! I'm Jeffery, and my goal is to work at a company where I can deliver business value while levelling up my skills as a developer. </motion.p>
+                    <motion.p className="text-center py-2">Hey! Im Jeffery, and my goal is to work at a company where I can deliver business value while levelling up my skills as a developer. </motion.p>
                 </>   
             )
             }

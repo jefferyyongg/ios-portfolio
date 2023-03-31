@@ -15,7 +15,7 @@ export default function StackFilter({skillTypes, setSkillTypes, allIcons, setFil
         const filteredIcons = allIcons.filter((item: { stack: any }) => item.stack === skillTypes)
         setFilteredIcons(filteredIcons)
 
-    },[skillTypes])
+    },[skillTypes, allIcons, setFilteredIcons])
 
     return (
         <div>

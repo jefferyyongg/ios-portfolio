@@ -3,6 +3,7 @@ import { FiChevronRight} from "react-icons/fi";
 import { BsDot } from "react-icons/bs";
 import { useState, FC } from "react";
 
+
 const slides = ["pic1.png", "pic2.png", "pic3.png"];
 
 const HomePictures: FC = (props) => {
