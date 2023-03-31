@@ -2,6 +2,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
 import { exampleRouter } from "~/server/api/routers/example";
 import { weatherRouter } from "./routers/weatherRouter";
 import { spotifyRouter } from "./routers/spotifyRouter";
+import { wakaRouter } from "./routers/wakaRouter";
 
 /**
  * This is the primary router for your server.
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   example: exampleRouter,
   weather: weatherRouter,
   spotify: spotifyRouter,
+  waka: wakaRouter,
 });
 
 // export type definition of API

@@ -28,8 +28,8 @@ export default function SpotifyWidget() {
         <div className="flex px-2 py-4 space-x-12">
             <img src={track.imageUrl} alt="" width={250} className="rounded-2xl " />
 
-            <div className="">
-                <div className="pb-28">
+            <div className="flex flex-col justify-between">
+                <div className="">
                     <img src="spotify_icon.png" alt="" width={56}/>
                 </div>
                 

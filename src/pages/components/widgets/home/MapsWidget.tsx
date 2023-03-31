@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
+import { ThemeContext } from "~/pages";
 import mapboxgl from "mapbox-gl"
 
 interface DarkModeProps {
-  isDarkMode: {
     isDarkMode: boolean,
-  }
+
 }
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiamVmZmVyeXlvbmciLCJhIjoiY2xmcHRram1iMTlmdTNxcDZuNjZta2FkbiJ9.DYmfy99yzrpWYHCPa8tyzg"
 
-export default function MapsWidget(props: DarkModeProps) {
-    const { isDarkMode } = props;
+export default function MapsWidget() {
+    const isDarkMode = useContext(ThemeContext);
 
     const lng = 6.671938
     const lat = 52.350374
@@ -18,31 +18,27 @@ export default function MapsWidget(props: DarkModeProps) {
     const [map, setMap] = useState<mapboxgl.Map>()
 
     const setMapStyle = () => {
-      const mapStyle = isDarkMode.isDarkMode ? "mapbox://styles/mapbox/light-v10" : "mapbox://styles/mapbox/dark-v10"
+      const mapStyle = isDarkMode ? "mapbox://styles/mapbox/light-v10" : "mapbox://styles/mapbox/dark-v10"
       return mapStyle
     }
 
     useEffect(() => {
       mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
       const newMap: mapboxgl.Map = new mapboxgl.Map({
         container: 'map', // container ID
         style: setMapStyle(), // style URL
         attributionControl: false,
         center: [lng, lat], // starting position [lng, lat]
         zoom: 13, // starting zoom
-    })
+      })
 
-    setMap(newMap)
-    
-    }, [isDarkMode])
-
-    if(map) {
-      map.loadImage("memio.png", (error, image) => {
+      newMap.loadImage("memio.png", (error, image) => {
         if (!image) return;
 
-        map.addImage("memio", image);
+        newMap.addImage("memio", image);
 
-        map.addSource("point", {
+        newMap.addSource("point", {
           "type": "geojson",
           "data": {
             "type": "FeatureCollection",
@@ -60,17 +56,21 @@ export default function MapsWidget(props: DarkModeProps) {
           }
         })
 
-      map.addLayer({
-        "id": "points",
-        "type": "symbol",
-        "source": "point",
-        "layout": {
-          "icon-image": "memio",
-          "icon-size": 0.30
-        }
+        newMap.addLayer({
+          "id": "points",
+          "type": "symbol",
+          "source": "point",
+          "layout": {
+            "icon-image": "memio",
+            "icon-size": 0.30
+          }
+        })
       })
-    })
-  }
+
+      setMap(newMap)
+    
+    }, [isDarkMode])
+
   
     return (
       <>

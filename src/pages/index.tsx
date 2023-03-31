@@ -1,31 +1,30 @@
 import { type NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { motion } from "framer-motion";
-import Head from "next/head";
 import HomePage from "./components/HomePage";
+import React from "react";
+
+export const ThemeContext = React.createContext(false);
 
 const Home: NextPage = () => {
 
-  const navTypes = ["Home", "Projects", "Socials"];
+  const navTypes = ["Home", "Projects", "Socials", "Contact"];
   const [active, setActive] = useState(navTypes[0]);
   
   const [isOn, setIsOn] = useState(false);
-  const toggleSwitch = () => setIsOn(!isOn);
 
   useEffect(() => {
     {isOn ? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark")}
   }, [isOn])
 
   return (
-      <body className="bg-[#1d1d1d] dark:bg-[#a1a1a1] transition duration-200">
-        <div id="__next" className="flex-col">
-
-          <header className="flex mx-auto items-center p-8 justify-around text-white font-medium">
-
+      <div className="flex flex-col bg-[#1d1d1d] dark:bg-[#a1a1a1] transition duration-200 container relative min-w-full">
+          <header className="flex p-8 justify-around items-center text-white font-medium">
+        
             <motion.button 
             className="flex w-[50px] h-[28px] items-center px-0.5 bg-[#8f8f8f] dark:bg-[#80ff91] rounded-full"
             style={ isOn ? { justifyContent: "end"} : { justifyContent: "start"}}
-            onClick={() => toggleSwitch()}>
+            onClick={() => setIsOn(!isOn)}>
             
               <motion.div 
               layout 
@@ -53,16 +52,17 @@ const Home: NextPage = () => {
                 }
               </ul>
             </nav>
-
-            <a>Contact</a>
+            <a>time widget</a>
           </header>
+                
+          
 
+        <ThemeContext.Provider value={isOn}>
           <div className="w-[1250px] min-h-screen mx-auto pt-8">
-            {active === "Home" && <HomePage isDarkMode={isOn} />}
+            {active === "Home" && <HomePage />}
           </div>
-
-        </div>
-      </body>
+        </ThemeContext.Provider>
+      </div>
   );
 };
 

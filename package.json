@@ -24,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "superjson": "1.9.1",
+    "typewriter-effect": "^2.19.0",
     "zod": "^3.20.6"
   },
   "devDependencies": {
