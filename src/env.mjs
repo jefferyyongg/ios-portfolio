@@ -5,7 +5,8 @@ import { z } from "zod";
  * built with invalid env vars.
  */
 const server = z.object({
-  DATABASE_URL: z.string().url(),
+  // Defaults to a local SQLite file so the app runs without a .env file
+  DATABASE_URL: z.string().url().default("file:./db.sqlite"),
   NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
